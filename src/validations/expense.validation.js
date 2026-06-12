@@ -89,4 +89,6 @@ export const getExpensesQueryValidation = [
     query("page").optional({ values: 'falsy' }).isInt({ min: 1 }).withMessage("Page must be a positive integer"),
     query("limit").optional({ values: 'falsy' }).isInt({ min: 1, max: 100 }).withMessage("Limit must be between 1 and 100"),
     query("sortBy").optional({ values: 'falsy' }).isIn(["expenseDate", "amount", "title", "createdAt"]).withMessage("Invalid sortBy field"),
+    query("search").optional({ values: 'falsy' }).isString().trim().isLength({ max: 100 }).withMessage("Search query must be at most 100 characters"),
+    query("order").optional({ values: 'falsy' }).isIn(["asc", "desc"]).withMessage("Order must be 'asc' or 'desc'"),
 ];

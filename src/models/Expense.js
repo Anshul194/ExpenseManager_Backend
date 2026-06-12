@@ -44,6 +44,6 @@ expenseSchema.index({ userId: 1, expenseDate: -1 });
 
 expenseSchema.index({ categoryId: 1 });
 
-expenseSchema.index({ title: "text", description: "text" });
+// Text index removed in favor of $regex partial matching in the service layer
 
 export default mongoose.model("Expense", expenseSchema);

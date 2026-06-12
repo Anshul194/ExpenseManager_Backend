@@ -43,7 +43,12 @@ export const getExpensesService = async (userId, query) => {
         }
 
         if (search) {
-            filter.$text = { $search: search };
+            const regex = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "i");
+            filter.$or = [
+                { title: regex },
+                { description: regex },
+                { tags: regex },
+            ];
         }
 
         const pageNum = parseInt(page);
