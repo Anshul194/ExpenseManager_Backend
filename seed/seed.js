@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import bcrypt from "bcryptjs";
 import User from "../src/models/User.js";
 import Category from "../src/models/Category.js";
 import Expense from "../src/models/Expense.js";
@@ -35,7 +36,7 @@ const seedData = async () => {
             {
                 fullName: "Test User",
                 email: "testuser@gmail.com",
-                password: "Test@1234"
+                password: await bcrypt.hash("Test@1234", 10)
             },
             {
                 new: true,
